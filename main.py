@@ -9,7 +9,7 @@ grade_scale = {
     "F": 0
 }
 
-courses = [
+first_semester = [
     {
         "code": "CPE301",
         "title": "Computer Organization and Architecture",
@@ -82,18 +82,32 @@ def calc_quality_point(credit_unit, grade):
     quality_point = grade_point * credit_unit
     return quality_point
 
-def calc_sgpa(courses):
+def calc_sgpa(first_semester):
     total_quality_points = 0
     total_credit_units = 0
 
-    for course in courses:
+    for course in first_semester:
         units = course["units"]
         total_credit_units += units
         grade = course["grade"]
         quality_point = calc_quality_point(units, grade)
         total_quality_points += quality_point
     sgpa = round(total_quality_points / total_credit_units, 2)
-    return sgpa
-# print(calc_sgpa(courses))
+    return sgpa, total_quality_points, total_credit_units
 
-print(calc_sgpa(second_semester))
+first_semester_result = calc_sgpa(first_semester)
+second_semester_result = calc_sgpa(second_semester)
+
+total_quality_points = first_semester_result[1] + second_semester_result[1]
+total_credit_units = first_semester_result[2] + second_semester_result[2]
+print("Quality Points:", total_quality_points)
+print("Credit Units:", total_credit_units)
+
+# _, first_semester_quality_points, first_semester_credit_units = calc_sgpa(first_semester)
+# _, second_semester_quality_points, second_semester_credit_units = calc_sgpa(second_semester)
+
+def calc_cgpa(total_quality_points, total_credit_units):
+    cgpa = round(total_quality_points / total_credit_units, 2)
+    return cgpa
+cgpa = calc_cgpa(total_quality_points, total_credit_units)
+print(cgpa)

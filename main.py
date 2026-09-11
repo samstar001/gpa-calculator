@@ -118,22 +118,16 @@ def calc_sgpa(course_list):
 def calc_cgpa(total_quality_points, total_credit_units):
     cgpa = round(total_quality_points / total_credit_units, 2)
     return cgpa
-
 def display_semester_result(semester, sgpa, quality_points, credit_units):
-    print(semester, sgpa, quality_points, credit_units)
+    print(f"{semester} SGPA: {sgpa} \n{semester} Quality Points:{quality_points} \n{semester} Credit Units:{credit_units}")
+
 
 first_semester = collect_courses()
-# second_semester = collect_courses()
+second_semester = collect_courses()
 
 first_sgpa, first_quality_points, first_credit_units = calc_sgpa(first_semester)
-# print("First Semester SGPA:", first_sgpa)
-# print("First Semester Quality Points:", first_quality_points)
-# print("First Semester Credit Units:", first_credit_units)
 
 second_sgpa, second_quality_points, second_credit_units = calc_sgpa(second_semester)
-# print("Second Semester SGPA:", second_sgpa)
-# print("Second Semester Quality Points:", second_quality_points)
-# print("Second Semester Credit Units:", second_credit_units)
 
 total_quality_points = first_quality_points + second_quality_points
 total_credit_units = first_credit_units + second_credit_units
@@ -141,4 +135,5 @@ total_credit_units = first_credit_units + second_credit_units
 cgpa = calc_cgpa(total_quality_points, total_credit_units)
 print("CGPA:", cgpa)
 
-display_semester_result("first semester", first_sgpa, first_quality_points, first_credit_units)
+display_semester_result("First Semester", first_sgpa, first_quality_points, first_credit_units)
+display_semester_result("Second Semester", second_sgpa, second_quality_points, second_credit_units)
